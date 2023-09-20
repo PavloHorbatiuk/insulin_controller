@@ -7,6 +7,8 @@ import { useState, useEffect, useCallback } from 'react';
 import useStore from 'store/store';
 import dayjs from 'dayjs';
 
+
+
 const AddDosage = () => {
 	const router = useRouter();
 	const { data: session } = useSession();
@@ -19,14 +21,14 @@ const AddDosage = () => {
 	}, [posts]);
 
 	useEffect(() => {
-		if (session?.user?.id) { // Add ?. to handle potential undefined session or user
+		if (session?.user?.id) {
 			if (!checkInjectionsTodayDid()) {
 				setSubmitting(false);
 			} else {
 				//router.push('/');
 			}
 		}
-	}, [session?.user?.id, posts, router, checkInjectionsTodayDid]);
+	}, [session?.user?.id, posts, router, checkInjectionsTodayDid, session]);
 
 	const postDosage = async (values) => {
 		setSubmitting(true);
