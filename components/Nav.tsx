@@ -6,6 +6,8 @@ import Avatar from '@mui/material/Avatar';
 import { Button } from './ui-components/Button/Button';
 import Logo from '../assets/images/logo.svg';
 import { BuiltInProviderType } from 'next-auth/providers';
+
+
 type ProvidersType = Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>;
 
 

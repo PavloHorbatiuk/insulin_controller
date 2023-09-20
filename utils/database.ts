@@ -1,4 +1,4 @@
-import mongoose, { MongooseOptions } from 'mongoose';
+import mongoose from 'mongoose';
 
 let isConnected = false;
 
@@ -10,12 +10,7 @@ export const connectToDB = async (): Promise<void> => {
 		return;
 	}
 	try {
-		const options: MongooseOptions = {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-		};
-
-		await mongoose.connect(process.env.MONGODB_URI, options);
+		await mongoose.connect(process.env.MONGODB_URI || '');
 		isConnected = true;
 		console.log('MongoDB', 'connected');
 	} catch (error) {
