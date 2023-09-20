@@ -1,18 +1,19 @@
 'use client'
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signIn, signOut, useSession, getProviders, ClientSafeProvider, LiteralUnion } from 'next-auth/react';
 import Avatar from '@mui/material/Avatar';
 import { Button } from './ui-components/Button/Button';
 import Logo from '../assets/images/logo.svg';
-
+import { BuiltInProviderType } from 'next-auth/providers';
+type ProvidersType = Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>;
 
 
 
 
 
 const Nav = () => {
-	const [providers, setProviders] = useState(null);
+	const [providers, setProviders] = useState<ProvidersType | null>(null);
 	const [toggleDropdown, setToggleDropdown] = useState(false)
 	const { data: session } = useSession();
 
@@ -40,7 +41,7 @@ const Nav = () => {
 							Sign Out
 						</Button>
 						<Link href={'profile'}>
-							<Avatar alt="avatar" src={session?.user.image} />
+							<Avatar alt="avatar" src={session?.user.image || ""} />
 						</Link>
 					</div>
 				) : (
