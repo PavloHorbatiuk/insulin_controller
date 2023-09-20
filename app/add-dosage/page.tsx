@@ -14,13 +14,10 @@ const AddDosage = () => {
 	const { data: session } = useSession();
 	const [submitting, setSubmitting] = useState(false);
 	const { posts } = useStore();
-	const checkInjectionsTodayDid = useCallback(() => {
-		return posts.some((injection) => {
-			return dayjs(injection.createdAt).format("MM/DD/YYYY") === dayjs().format('MM/DD/YYYY');
-		});
-	}, [posts]);
 
-
+	const checkInjectionsTodayDid = posts.some((injection) => {
+		return dayjs(injection.createdAt).format("MM/DD/YYYY") === dayjs().format('MM/DD/YYYY');
+	});
 
 	const postDosage = async (values) => {
 		setSubmitting(true);
