@@ -40,8 +40,10 @@ const Feed: React.FC<IProps> = ({ }) => {
 			const { data } = await response;
 			setPosts(data);
 		}
-		session?.user.id && fetchPosts();
-	}, [session])
+		if (session && session.user?.id) {
+			fetchPosts();
+		}
+	}, [session, setPosts])
 
 	const filteredPosts = posts.filter(post => post.creator._id === session?.user.id)
 
