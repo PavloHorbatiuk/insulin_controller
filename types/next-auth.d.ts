@@ -15,13 +15,9 @@ declare module 'next-auth' {
 			image?: string | null;
 		};
 	}
-}
-
-interface CustomProfile extends DefaultSession {
-	profile?: {
-		id?: string | null;
-		name?: string | null;
-		email?: string | null;
-		picture?: string | null;
-	};
+	interface Profile {
+		groups?: Array<string> | null;
+		picture: string | null;
+		name: string | null;
+	}
 }
