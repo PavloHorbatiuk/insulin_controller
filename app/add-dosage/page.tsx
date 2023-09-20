@@ -17,15 +17,16 @@ const AddDosage = () => {
 			return dayjs(injection.createdAt).format("MM/DD/YYYY") === dayjs().format('MM/DD/YYYY');
 		});
 	}, [posts]);
+
 	useEffect(() => {
-		if (session?.user.id) {
+		if (session?.user?.id) { // Add ?. to handle potential undefined session or user
 			if (!checkInjectionsTodayDid()) {
 				setSubmitting(false);
 			} else {
 				//router.push('/');
 			}
 		}
-	}, [session?.user.id, posts, router, checkInjectionsTodayDid]);
+	}, [session?.user?.id, posts, router, checkInjectionsTodayDid]);
 
 	const postDosage = async (values) => {
 		setSubmitting(true);
